@@ -5,3 +5,6 @@ I was frustrated while manually creating training data for machine learning, tha
 - or stare at your excel sheet all day long
 
 So my goal was to create a simple and efficient python GUI to help me with my annotations.
+
+You will need to change the two json files and include your codes and descriptions.
+Then you will also have to specify under the display_row function which column you want to display.
