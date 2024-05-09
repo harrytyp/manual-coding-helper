@@ -1,10 +1,45 @@
-This is a Coding Helper GUI for the manual classification of text in Excel or CSV files.
+Manual Coding Helper GUI for Text Classification
+This project is a simple Python GUI tool designed to assist with manual classification of text data stored in Excel or CSV files. The motivation behind this project was to provide a user-friendly alternative for creating training data for machine learning tasks, avoiding the complexities of Doccano (https://github.com/doccano/doccano) or tedious manual spreadsheet work.
 
-I was frustrated while manually creating training data for machine learning, that you can choose to either
-- use overengeneered software like doccero which brings in a lot of complexity
-- or stare at your excel sheet all day long
+## Key Features
+- User-Friendly Interface: A straightforward GUI designed to streamline the process of annotating and classifying text data.
+- Customizable: Easily adaptable to different datasets by configuring JSON files with specific codes and descriptions.
+- Navigation Controls: Navigate through rows of data, update annotations, and manage classification status with buttons and keyboard shortcuts.
+- Font Size Adjustment: Ability to customize the font size for better readability.
+- Dark Mode Support: Toggle between light and dark modes for optimal viewing experience.
 
-So my goal was to create a simple and efficient python GUI to help me with my annotations.
+## Getting Started
 
-You will need to change the two json files and include your codes and descriptions.
-Then you will also have to specify under the display_row function which column you want to display.
+Prerequisites
+- Python 3.x installed on your system.
+- Required Python packages can be installed using pip:
+```pip install pandas ttkbootstrap```
+
+## Installation and Usage
+
+Clone the repository:
+
+```git clone https://github.com/your-username/manual-coding-helper.git```
+
+```cd manual-coding-helper```
+
+Run the application:
+
+```python manual_coding_gui.py```
+
+Select your dataset file (in Excel or CSV format) when prompted.
+Use the GUI to navigate through your data and annotate classifications. Your process is automatically saved. For best performance, use csv.
+
+## Configuration
+
+### JSON Files
+Two JSON files (descriptive_sentences.json and category_mapping.json) are used for configuring codes, descriptions, and category mappings. Update these files according to your dataset's classification needs.
+
+### Display Customization
+Modify the display_row function in the code to specify the column you want to display within the GUI interface. (Replace 'sentence_text')
+
+## Contributing
+Contributions to enhance this tool are welcome! Feel free to open issues, submit pull requests, or suggest improvements.
+
+## License
+tbd
