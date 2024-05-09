@@ -1,5 +1,5 @@
 # Manual Coding Helper GUI for Text Classification
-This project is a simple Python GUI tool designed to assist with manual classification of text data stored in Excel or CSV files. The motivation behind this project was to provide a user-friendly alternative for creating training data for machine learning tasks, avoiding the complexities of Doccano (https://github.com/doccano/doccano) or tedious manual spreadsheet work.
+This project is a simple Python GUI tool designed to assist with manual classification of segmented text data stored in Excel or CSV files. The motivation behind this project was to provide a user-friendly alternative for creating training data for machine learning tasks, avoiding the complexities of Doccano (https://github.com/doccano/doccano) or tedious manual spreadsheet work.
 
 # Features
 - User-Friendly Interface: A straightforward GUI designed to streamline the process of annotating and classifying text data.
@@ -7,6 +7,12 @@ This project is a simple Python GUI tool designed to assist with manual classifi
 - Navigation Controls: Navigate through rows of data, update annotations, and manage classification status with buttons and keyboard shortcuts.
 - Font Size Adjustment: Ability to customize the font size for better readability.
 - Dark Mode Support: Toggle between light and dark modes for optimal viewing experience.
+
+# Known Bugs & Planned Features
+- No focus on the main page after loading the dataset: Tab out and in after loading it
+- Merging the json files into one
+- Being able to set the categories and category descriptions within the GUI
+- selection screen for the column that is to be coded
 
 # Getting Started
 
