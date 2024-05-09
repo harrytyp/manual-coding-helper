@@ -11,7 +11,7 @@ This project is a simple Python GUI tool designed to assist with manual classifi
 - Font Size Adjustment: Ability to customize the font size for better readability.
 - Dark Mode Support: Toggle between light and dark modes for optimal viewing experience.
 
-# Known Bugs & Non-Features
+# Known Bugs
 - No focus on the main page after loading the dataset: Tab out and in after loading it
 - Correct toggle does is bugged
 
@@ -19,6 +19,10 @@ This project is a simple Python GUI tool designed to assist with manual classifi
 - Merging the json files into one
 - Being able to see and set the categories, category values and category descriptions within the GUI
 - selection screen for the column that is to be coded
+- Multi-Label classification support
+
+# Not Planned Features
+- Span annotations. This is only for table-based manual classification
 
 # Getting Started
 
