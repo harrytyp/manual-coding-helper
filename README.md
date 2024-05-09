@@ -1,4 +1,4 @@
-Coding Helper for the manual classification of text in Excel or CSV files.
+This is a Coding Helper GUI for the manual classification of text in Excel or CSV files.
 
 I was frustrated while manually creating training data for machine learning, that you can choose to either
 - use overengeneered software like doccero which brings in a lot of complexity
