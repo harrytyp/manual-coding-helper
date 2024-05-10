@@ -68,6 +68,7 @@ class ManualCodingApp:
         self.kodierung_label.pack(pady=5)
         self.category_info_label.pack(pady=5)
         self.descriptive_sentence_text.pack(pady=5, fill="both", expand=True)
+
         self.row_label.pack(pady=5)
         self.correct_label.pack(pady=5)
         self.kommentar_label.pack(pady=5)
@@ -273,7 +274,7 @@ class ManualCodingApp:
 
 
     def go_to_empty_row(self):
-        empty_indices = self.df[self.df['Manually Checked'].isna()].index
+        empty_indices = self.df[self.df['Kodierung'] == 0].index
         if not empty_indices.empty:
             self.index.set(empty_indices[0])
             self.display_row()
