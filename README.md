@@ -1,7 +1,7 @@
 # Manual Coding Helper GUI for Text Classification
 This project is a simple Python GUI tool designed to assist with manual classification of segmented text data stored in Excel or CSV files. The motivation behind this project was to provide a user-friendly alternative for creating training data for machine learning tasks, avoiding the complexities of Doccano (https://github.com/doccano/doccano) or tedious manual spreadsheet work.
 
-![image](https://github.com/harrytyp/manual-coding-helper/assets/125975248/049f7dee-4268-486e-b0e0-d1d2eb29ba2d)
+![image](https://github.com/harrytyp/manual-coding-helper/assets/125975248/28f1f754-5003-4c97-b787-c2ce5d97ee77)
 
 
 # Features
