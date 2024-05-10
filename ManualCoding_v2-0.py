@@ -23,7 +23,10 @@ class ManualCodingApp:
         self.root = root
         self.setup_gui()
         self.load_data()
+        self.display_column = None  # Define display_column here
         self.display_row()
+        self.create_menu()
+
 
     def setup_gui(self):
         self.root.title("Manual Coding Helper for SCEUS")
@@ -114,6 +117,45 @@ class ManualCodingApp:
         # After loading data, set focus back to the main application window
         self.root.focus_force()  # Ensure window has focus after loading data
 
+    def create_menu(self):
+        menubar = tk.Menu(self.root)
+        self.root.config(menu=menubar)
+
+        settings_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="Settings", menu=settings_menu)
+
+        settings_menu.add_command(label="Select column to display", command=self.select_column)
+
+
+    def select_column(self):
+        column_names = self.df.columns.tolist()
+        column_names.sort()
+
+        column_var = tk.StringVar()
+        if self.display_column is None:
+            self.display_column = 'sentence_text' if 'sentence_text' in column_names else column_names[0]
+        column_var.set(self.display_column)  # default value
+
+        window = tk.Toplevel(self.root)
+        window.title("Select column to display")
+
+        label = tk.Label(window, text="Select column to display:")
+        label.pack(pady=5)
+
+        option_menu = tk.OptionMenu(window, column_var, *column_names)
+        option_menu.pack(pady=5)
+
+        def save_column():
+            self.display_column = column_var.get()
+            window.destroy()
+
+        button = tk.Button(window, text="Save", command=save_column)
+        button.pack(pady=5)
+
+        window.grab_set()
+        self.root.wait_window(window)
+
+
 
     def ensure_columns(self):
         for column in ['Kodierung', 'Kommentar', 'Manually Checked']:
@@ -123,7 +165,7 @@ class ManualCodingApp:
     def display_row(self):
         index = self.index.get()
         row_data = self.df.iloc[index]
-        self.mip_label.config(text=row_data.get('sentence_text', ''))
+        self.mip_label.config(text=row_data.get(self.display_column, ''))
         self.kodierung_label.config(text=f"Kodierung: {row_data.get('Kodierung', '')}")
         self.row_label.config(text=f"Row: {index + 1}/{len(self.df)}")
         self.kommentar_label.config(text=f"Kommentar: {row_data.get('Kommentar', '')}")
