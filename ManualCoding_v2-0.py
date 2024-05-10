@@ -38,6 +38,7 @@ class ManualCodingApp:
         self.layout_widgets()
         self.bind_events()
 
+
     def create_widgets(self):
         self.mip_label = ttk.Label(self.root, font=("Helvetica", self.font_size.get(), "bold"), wraplength=1200, bootstyle="inverse-primary")
         self.kodierung_label = Label(self.root, font=("Helvetica", self.font_size.get()))
@@ -107,8 +108,11 @@ class ManualCodingApp:
         else:
             sys.exit("Unsupported file type")
 
+        self.file_path = file_path  # Store the file path
         self.ensure_columns()
-        self.correct_status = self.df.get('Manually Checked', pd.Series([None]*len(self.df)))
+
+        # After loading data, set focus back to the main application window
+        self.root.focus_force()  # Ensure window has focus after loading data
 
 
     def ensure_columns(self):
@@ -147,12 +151,16 @@ class ManualCodingApp:
         new_kodierung = self.entry.get()
         self.df.at[self.index.get(), 'Kodierung'] = new_kodierung
         self.display_row()
+        self.save_changes()
+
 
     def update_kommentar(self):
         new_kommentar = self.kommentar_entry.get()
         self.df.at[self.index.get(), 'Kommentar'] = new_kommentar
         self.kommentar_label.config(text=f"Kommentar: {new_kommentar}")
         self.kommentar_entry.delete(0, 'end')
+        self.save_changes()
+
 
     def update_wraplength(self):
         window_width = self.root.winfo_width()
@@ -212,13 +220,13 @@ class ManualCodingApp:
             self.correct_label.config(text="Correct: ?", fg='yellow')
 
     def save_changes(self):
-        file_path = self.df['file_path']
-        if file_path.endswith('.xlsx'):
-            self.df.to_excel(file_path, index=False)
-        elif file_path.endswith('.csv'):
-            self.df.to_csv(file_path, index=False)
+        if self.file_path.endswith('.xlsx'):
+            self.df.to_excel(self.file_path, index=False)
+        elif self.file_path.endswith('.csv'):
+            self.df.to_csv(self.file_path, index=False)
         else:
             print("Unsupported file type")
+
 
     def go_to_empty_row(self):
         empty_indices = self.df[self.df['Manually Checked'].isna()].index
@@ -231,8 +239,10 @@ class ManualCodingApp:
 
 if __name__ == "__main__":
     root = ttk.Window(themename="darkly")
+    root.focus_set()  # Set the focus to the main window
     app = ManualCodingApp(root)
     root.mainloop()
+
 
 
 
