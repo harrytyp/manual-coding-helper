@@ -67,7 +67,7 @@ class ManualCodingApp:
         self.mip_label.pack(pady=5)
         self.kodierung_label.pack(pady=5)
         self.category_info_label.pack(pady=5)
-        self.descriptive_sentence_text.pack(pady=5)
+        self.descriptive_sentence_text.pack(pady=5, fill="both", expand=True)
         self.row_label.pack(pady=5)
         self.correct_label.pack(pady=5)
         self.kommentar_label.pack(pady=5)
