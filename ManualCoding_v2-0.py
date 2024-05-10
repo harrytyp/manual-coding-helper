@@ -42,7 +42,7 @@ class ManualCodingApp:
 
 
     def create_widgets(self):
-        self.mip_label = ttk.Label(self.root, font=("Helvetica", self.font_size.get(), "bold"), wraplength=1200, bootstyle="inverse-primary")
+        self.mip_label = ttk.Label(self.root, font=("Helvetica", self.font_size.get(), "bold"), wraplength=2000, bootstyle="inverse-primary")
         self.kodierung_label = Label(self.root, font=("Helvetica", self.font_size.get()))
         self.row_label = Label(self.root, font=("Helvetica", self.font_size.get()))
         self.correct_label = Label(self.root, font=("Helvetica", self.font_size.get()))
@@ -53,13 +53,13 @@ class ManualCodingApp:
         self.kommentar_entry = Entry(self.root, font=("Helvetica", self.font_size.get()))
         self.entry = Entry(self.root, font=("Helvetica", self.font_size.get()))
         self.entry.config(state=tk.NORMAL)  # Set the state to NORMAL to enable input
-        self.entry_label = Label(self.root, text="Enter the new value for Kodierung:")
-        self.update_button = Button(self.root, text="Update Kodierung (Enter)", command=self.update_kodierung, font=("Helvetica", self.font_size.get()))
+        self.entry_label = Label(self.root, text="Enter new label value:")
+        self.update_button = Button(self.root, text="Update Label (Enter)", command=self.update_kodierung, font=("Helvetica", self.font_size.get()))
         self.next_button = Button(self.root, text="Next Row (Right)", command=self.next_row, font=("Helvetica", self.font_size.get()))
         self.previous_button = Button(self.root, text="Previous Row (Left)", command=self.previous_row, font=("Helvetica", self.font_size.get()))
         self.correct_button = Button(self.root, text="Correct (C)", command=lambda: self.toggle_correct_status(True), font=("Helvetica", self.font_size.get()))
         self.incorrect_button = Button(self.root, text="Incorrect (X)", command=lambda: self.toggle_correct_status(False), font=("Helvetica", self.font_size.get()))
-        self.update_kommentar_button = Button(self.root, text="Update Kommentar", command=self.update_kommentar, font=("Helvetica", self.font_size.get()))
+        self.update_kommentar_button = Button(self.root, text="Update Comment", command=self.update_kommentar, font=("Helvetica", self.font_size.get()))
         self.go_to_empty_button = Button(self.root, text="Go to Empty Row", command=self.go_to_empty_row, font=("Helvetica", self.font_size.get()))
 
     def layout_widgets(self):
@@ -168,9 +168,9 @@ class ManualCodingApp:
         index = self.index.get()
         row_data = self.df.iloc[index]
         self.mip_label.config(text=row_data.get(self.display_column, ''))
-        self.kodierung_label.config(text=f"Kodierung: {row_data.get('Kodierung', '')}")
+        self.kodierung_label.config(text=f"Label: {row_data.get('Kodierung', '')}")
         self.row_label.config(text=f"Row: {index + 1}/{len(self.df)}")
-        self.kommentar_label.config(text=f"Kommentar: {row_data.get('Kommentar', '')}")
+        self.kommentar_label.config(text=f"Comment: {row_data.get('Kommentar', '')}")
         self.update_category_info()
 
     def update_category_info(self):
@@ -201,7 +201,7 @@ class ManualCodingApp:
     def update_kommentar(self):
         new_kommentar = self.kommentar_entry.get()
         self.df.at[self.index.get(), 'Kommentar'] = new_kommentar
-        self.kommentar_label.config(text=f"Kommentar: {new_kommentar}")
+        self.kommentar_label.config(text=f"Comment: {new_kommentar}")
         self.kommentar_entry.delete(0, 'end')
         self.save_changes()
 
