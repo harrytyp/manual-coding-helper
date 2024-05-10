@@ -23,10 +23,9 @@ class ManualCodingApp:
         self.root = root
         self.setup_gui()
         self.load_data()
-        self.display_column = None  # Define display_column here
-        self.display_row()
+        self.display_column = "sentence_text" # Setting sentence_text as default
         self.create_menu()
-
+        self.display_row()
 
     def setup_gui(self):
         self.root.title("Manual Coding Helper for SCEUS")
@@ -158,7 +157,6 @@ class ManualCodingApp:
 
         window.grab_set()
         self.root.wait_window(window)
-
 
 
     def ensure_columns(self):
