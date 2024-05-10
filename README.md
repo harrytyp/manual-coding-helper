@@ -6,7 +6,7 @@ This project is a simple Python GUI tool designed to assist with manual classifi
 
 # Features
 - User-Friendly Interface: A straightforward GUI designed to streamline the process of annotating and classifying text data.
-- Customizable: Easily adaptable to different datasets by configuring JSON files with specific codes and descriptions.
+- Customizable: Easily adaptable to different datasets by configuring JSON files with specific codes and descriptions. Select your columns to display.
 - Navigation Controls: Navigate through rows of data, update annotations, and manage classification status with buttons and keyboard shortcuts.
 - Font Size Adjustment: Ability to customize the font size for better readability.
 - Dark Mode Support: Toggle between light and dark modes for optimal viewing experience.
@@ -15,9 +15,9 @@ This project is a simple Python GUI tool designed to assist with manual classifi
 - Correct toggle does is bugged
 
 # Planned Features
+- Setting persistence between sessions
 - Merging the json files into one
-- Being able to see and set the categories, category values and category descriptions within the GUI
-- selection screen for the column that is to be coded
+- Submenu to edit categories, category values and category descriptions within the GUI
 - Multi-Label classification support
 
 # Not Planned Features
