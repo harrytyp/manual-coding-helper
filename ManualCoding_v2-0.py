@@ -58,8 +58,6 @@ class ManualCodingApp:
         self.update_button = Button(self.root, text="Update Kodierung (Enter)", command=self.update_kodierung, font=("Helvetica", self.font_size.get()))
         self.next_button = Button(self.root, text="Next Row (Right)", command=self.next_row, font=("Helvetica", self.font_size.get()))
         self.previous_button = Button(self.root, text="Previous Row (Left)", command=self.previous_row, font=("Helvetica", self.font_size.get()))
-        self.increase_font_button = Button(self.root, text="Increase Font Size (Strg +)", command=self.increase_font_size, font=("Helvetica", self.font_size.get()))
-        self.decrease_font_button = Button(self.root, text="Decrease Font Size (Strg -)", command=self.decrease_font_size, font=("Helvetica", self.font_size.get()))
         self.correct_button = Button(self.root, text="Correct (C)", command=lambda: self.toggle_correct_status(True), font=("Helvetica", self.font_size.get()))
         self.incorrect_button = Button(self.root, text="Incorrect (X)", command=lambda: self.toggle_correct_status(False), font=("Helvetica", self.font_size.get()))
         self.update_kommentar_button = Button(self.root, text="Update Kommentar", command=self.update_kommentar, font=("Helvetica", self.font_size.get()))
@@ -85,8 +83,6 @@ class ManualCodingApp:
         self.update_kommentar_button.pack(pady=5)
         self.previous_button.pack(pady=5)
         self.next_button.pack(pady=5)
-        self.decrease_font_button.pack(pady=5)
-        self.increase_font_button.pack(pady=5)
 
     def bind_events(self):
         self.root.bind('<Left>', lambda event: self.previous_row())
@@ -125,6 +121,14 @@ class ManualCodingApp:
         menubar.add_cascade(label="Settings", menu=settings_menu)
 
         settings_menu.add_command(label="Select column to display", command=self.select_column)
+        settings_menu.add_cascade(label="Font Size", menu=self.font_size_submenu())
+
+
+    def font_size_submenu(self):
+        submenu = tk.Menu(self.root, tearoff=0)
+        submenu.add_command(label="Increase Font Size (Strg +)", command=self.increase_font_size)
+        submenu.add_command(label="Decrease Font Size (Strg -)", command=self.decrease_font_size)
+        return submenu
 
 
     def select_column(self):
