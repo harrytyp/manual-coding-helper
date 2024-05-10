@@ -12,7 +12,7 @@ This project is a simple Python GUI tool designed to assist with manual classifi
 - Dark Mode Support: Toggle between light and dark modes for optimal viewing experience.
 
 # Known Bugs
-- Correct toggle does is bugged
+- Correct toggle is bugged and does not save
 
 # Planned Features
 - Setting persistence between sessions
