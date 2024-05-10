@@ -12,7 +12,6 @@ This project is a simple Python GUI tool designed to assist with manual classifi
 - Dark Mode Support: Toggle between light and dark modes for optimal viewing experience.
 
 # Known Bugs
-- No focus on the main page after loading the dataset: Tab out and in after loading it
 - Correct toggle does is bugged
 
 # Planned Features
