@@ -11,12 +11,11 @@ This project is a simple Python GUI tool designed to assist with manual classifi
 - Font Size Adjustment: Ability to customize the font size for better readability.
 - Dark Mode Support: Toggle between light and dark modes for optimal viewing experience.
 
-# Known Bugs
-- Correct toggle is bugged and does not save
-
-# Planned Features
+# Planned Features (in that order)
 - Improve label editor
 - Setting persistence between sessions
+- Re-Implement a Correct/Incorrect Toggle
+- Color Customization
 - Multi-Label classification support
 
 # Not Planned Features
