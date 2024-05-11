@@ -8,8 +8,9 @@ import ttkbootstrap as ttk
 
 # Constants for file paths and initial settings
 SCRIPT_DIRECTORY = getattr(sys, '_MEIPASS', os.path.dirname(os.path.realpath(__file__)))
-DESCRIPTIVE_SENTENCES_FILE = os.path.join(SCRIPT_DIRECTORY, "descriptive_sentences.json")
-CATEGORY_MAPPING_FILE = os.path.join(SCRIPT_DIRECTORY, "category_mapping.json")
+CATEGORY_FILE = os.path.join(SCRIPT_DIRECTORY, "labels.json")
+#DESCRIPTIVE_SENTENCES_FILE = os.path.join(SCRIPT_DIRECTORY, "descriptive_sentences.json")
+#CATEGORY_MAPPING_FILE = os.path.join(SCRIPT_DIRECTORY, "category_mapping.json")
 INITIAL_FONT_SIZE = 12
 
 def load_json_file(file_path, default={}):
@@ -17,6 +18,9 @@ def load_json_file(file_path, default={}):
         with open(file_path, 'r') as file:
             return json.load(file)
     return default
+
+categories = load_json_file(CATEGORY_FILE)
+
 
 class ManualCodingApp:
     def __init__(self, root):
@@ -176,11 +180,12 @@ class ManualCodingApp:
 
     def update_category_info(self):
         kodierung = self.df.at[self.index.get(), 'Kodierung']
-        category_info = load_json_file(CATEGORY_MAPPING_FILE).get(str(kodierung), "No information available")
+        category_info = categories.get(str(kodierung), {}).get("label", "No information available")
         self.category_info_label.config(text=f"Category Information: {category_info}")
-        descriptive_sentence = load_json_file(DESCRIPTIVE_SENTENCES_FILE).get(category_info, "No descriptive sentence available")
+        descriptive_sentence = categories.get(str(kodierung), {}).get("description", "No descriptive sentence available")
         self.descriptive_sentence_text.delete('1.0', tk.END)
         self.descriptive_sentence_text.insert(tk.END, descriptive_sentence)
+
 
     def next_row(self):
         new_index = min(self.index.get() + 1, len(self.df) - 1)
