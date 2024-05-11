@@ -6,11 +6,10 @@ import tkinter as tk
 from tkinter import Label, Entry, Button, BooleanVar, filedialog
 import ttkbootstrap as ttk
 
+
 # Constants for file paths and initial settings
 SCRIPT_DIRECTORY = getattr(sys, '_MEIPASS', os.path.dirname(os.path.realpath(__file__)))
 CATEGORY_FILE = os.path.join(SCRIPT_DIRECTORY, "labels.json")
-#DESCRIPTIVE_SENTENCES_FILE = os.path.join(SCRIPT_DIRECTORY, "descriptive_sentences.json")
-#CATEGORY_MAPPING_FILE = os.path.join(SCRIPT_DIRECTORY, "category_mapping.json")
 INITIAL_FONT_SIZE = 12
 
 def load_json_file(file_path, default={}):
@@ -20,7 +19,6 @@ def load_json_file(file_path, default={}):
     return default
 
 categories = load_json_file(CATEGORY_FILE)
-
 
 class ManualCodingApp:
     def __init__(self, root):
@@ -126,6 +124,54 @@ class ManualCodingApp:
 
         settings_menu.add_command(label="Select column to display", command=self.select_column)
         settings_menu.add_cascade(label="Font Size", menu=self.font_size_submenu())
+        settings_menu.add_command(label="Edit Labels", command=self.edit_labels)
+
+    def edit_labels(self):
+        window = tk.Toplevel(self.root)
+        window.title("Edit Labels")
+
+        tree = ttk.Treeview(window, columns=('Label', 'Description'))
+        tree.heading('#0', text='ID')
+        tree.heading('#1', text='Label')
+        tree.heading('#2', text='Description')
+        tree.pack()
+
+        for id, label in categories.items():
+            tree.insert('', 'end', text=id, values=(label['label'], label['description']))
+
+        def edit_item():
+            selected_item = tree.selection()[0]
+            id = tree.item(selected_item, 'text')
+            label = tree.item(selected_item, 'values')[0]
+            description = tree.item(selected_item, 'values')[1]
+
+            top = tk.Toplevel(window)
+            tk.Label(top, text='Label:').pack()
+            label_entry = tk.Entry(top)
+            label_entry.insert(0, label)
+            label_entry.pack()
+            tk.Label(top, text='Description:').pack()
+            description_entry = tk.Entry(top)
+            description_entry.insert(0, description)
+            description_entry.pack()
+
+            def save_changes():
+                categories[id]['label'] = label_entry.get()
+                categories[id]['description'] = description_entry.get()
+                with open(CATEGORY_FILE, 'w') as f:
+                    json.dump(categories, f)
+                top.destroy()
+                refresh_treeview(tree)  # Call the refresh function
+
+            tk.Button(top, text='Save', command=save_changes).pack()
+
+        def refresh_treeview(tree):
+            for item in tree.get_children():
+                tree.delete(item)
+            for id, label in categories.items():
+                tree.insert('', 'end', text=id, values=(label['label'], label['description']))
+
+        tk.Button(window, text='Edit', command=edit_item).pack()
 
 
     def font_size_submenu(self):
