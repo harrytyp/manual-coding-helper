@@ -5,7 +5,7 @@ This project is a simple Python GUI tool designed to assist with manual classifi
 
 
 # Features
-- User-Friendly Interface: A straightforward GUI designed to streamline the process of annotating and classifying text data.
+- User-Friendly Interface: A straightforward GUI designed to streamline the process of annotating and classifying text data in csv and xlsx format.
 - Customizable: Easily adaptable to different datasets by configuring JSON files with specific codes and descriptions. Select your columns to display.
 - Navigation Controls: Navigate through rows of data, update annotations, and manage classification status with buttons and keyboard shortcuts.
 - Font Size Adjustment: Ability to customize the font size for better readability.
