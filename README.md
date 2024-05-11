@@ -45,11 +45,11 @@ Use the GUI to navigate through your data and annotate classifications. Your pro
 
 # Configuration
 
-### JSON Files
-Two JSON files (descriptive_sentences.json and category_mapping.json) are used for configuring codes, descriptions, and category mappings. Update these files according to your dataset's classification needs.
+### JSON File
+The JSON file (labels.json) is used for configuring codes, descriptions, and category mappings. Update these files according to your dataset's classification needs or use the rudimentary editor in the GUI under settings.
 
-### Display Customization
-Modify the display_row function in the code to specify the column you want to display within the GUI interface. (Replace 'sentence_text')
+### Display to be coded
+Change the column to be displayed/to be coded under Settings -> Select columns to display.
 
 # Contributing
 Contributions to enhance this tool are welcome! Feel free to open issues, submit pull requests, or suggest improvements.
