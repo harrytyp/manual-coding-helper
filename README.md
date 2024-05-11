@@ -15,9 +15,8 @@ This project is a simple Python GUI tool designed to assist with manual classifi
 - Correct toggle is bugged and does not save
 
 # Planned Features
+- Improve label editor
 - Setting persistence between sessions
-- Merging the json files into one
-- Submenu to edit categories, category values and category descriptions within the GUI
 - Multi-Label classification support
 
 # Not Planned Features
