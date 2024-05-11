@@ -47,7 +47,7 @@ class ManualCodingApp:
         self.mip_label = ttk.Label(self.root, font=("Helvetica", self.font_size.get(), "bold"), wraplength=2000, bootstyle="inverse-primary")
         self.kodierung_label = Label(self.root, font=("Helvetica", self.font_size.get()))
         self.row_label = Label(self.root, font=("Helvetica", self.font_size.get()))
-        self.correct_label = Label(self.root, font=("Helvetica", self.font_size.get()))
+#        self.correct_label = Label(self.root, font=("Helvetica", self.font_size.get()))
         self.category_info_label = Label(self.root, font=("Helvetica", self.font_size.get()))
         self.kommentar_label = Label(self.root, font=("Helvetica", self.font_size.get()))
         self.percentage_label = Label(self.root, font=("Helvetica", self.font_size.get()))
@@ -59,8 +59,8 @@ class ManualCodingApp:
         self.update_button = Button(self.root, text="Update Label (Enter)", command=self.update_kodierung, font=("Helvetica", self.font_size.get()))
         self.next_button = Button(self.root, text="Next Row (Right)", command=self.next_row, font=("Helvetica", self.font_size.get()))
         self.previous_button = Button(self.root, text="Previous Row (Left)", command=self.previous_row, font=("Helvetica", self.font_size.get()))
-        self.correct_button = Button(self.root, text="Correct (C)", command=lambda: self.toggle_correct_status(True), font=("Helvetica", self.font_size.get()))
-        self.incorrect_button = Button(self.root, text="Incorrect (X)", command=lambda: self.toggle_correct_status(False), font=("Helvetica", self.font_size.get()))
+#        self.correct_button = Button(self.root, text="Correct (C)", command=lambda: self.toggle_correct_status(True), font=("Helvetica", self.font_size.get()))
+#        self.incorrect_button = Button(self.root, text="Incorrect (X)", command=lambda: self.toggle_correct_status(False), font=("Helvetica", self.font_size.get()))
         self.update_kommentar_button = Button(self.root, text="Update Comment", command=self.update_kommentar, font=("Helvetica", self.font_size.get()))
         self.go_to_empty_button = Button(self.root, text="Go to Empty Row", command=self.go_to_empty_row, font=("Helvetica", self.font_size.get()))
 
@@ -72,12 +72,12 @@ class ManualCodingApp:
         self.descriptive_sentence_text.pack(pady=5, fill="both", expand=True)
 
         self.row_label.pack(pady=5)
-        self.correct_label.pack(pady=5)
+#        self.correct_label.pack(pady=5)
         self.kommentar_label.pack(pady=5)
         self.percentage_label.pack(pady=5)
         self.go_to_empty_button.pack(pady=5)
-        self.correct_button.pack(pady=5)
-        self.incorrect_button.pack(pady=5)
+#        self.correct_button.pack(pady=5)
+#        self.incorrect_button.pack(pady=5)
         self.entry_label.pack(pady=5)
         self.entry.pack(pady=5)
         self.update_button.pack(pady=5)
@@ -89,8 +89,8 @@ class ManualCodingApp:
     def bind_events(self):
         self.root.bind('<Left>', lambda event: self.previous_row())
         self.root.bind('<Right>', lambda event: self.next_row())
-        self.root.bind('<c>', lambda event: self.toggle_correct_status(True))
-        self.root.bind('<x>', lambda event: self.toggle_correct_status(False))
+#        self.root.bind('<c>', lambda event: self.toggle_correct_status(True))
+#        self.root.bind('<x>', lambda event: self.toggle_correct_status(False))
         self.root.bind('<Control-plus>', lambda event: self.increase_font_size())
         self.root.bind('<Control-minus>', lambda event: self.decrease_font_size())
         self.root.bind('<Return>', lambda event: self.update_kodierung())
@@ -264,9 +264,9 @@ class ManualCodingApp:
         new_width = max(1, (window_width - 2 * padding) // 7)
         self.descriptive_sentence_text.config(width=new_width)
         widgets_with_wraplength = [
-            self.mip_label, self.kodierung_label, self.row_label, self.correct_label,
+            self.mip_label, self.kodierung_label, self.row_label,
             self.category_info_label, self.kommentar_label, self.percentage_label
-        ]
+        ] # self.correct_label
         new_wraplength = window_width - 2 * padding
         for widget in widgets_with_wraplength:
             widget.config(wraplength=new_wraplength)
@@ -277,8 +277,8 @@ class ManualCodingApp:
         self.root.configure(bg='#333333' if is_dark else 'white')
         text_color = 'white' if is_dark else 'black'
         bg_color = '#333333' if is_dark else 'white'
-        widgets = [self.mip_label, self.kodierung_label, self.row_label, self.correct_label,
-                   self.category_info_label, self.kommentar_label, self.percentage_label]
+        widgets = [self.mip_label, self.kodierung_label, self.row_label,
+                   self.category_info_label, self.kommentar_label, self.percentage_label] # self.correct_label
         for widget in widgets:
             widget.config(fg=text_color, bg=bg_color)
         self.entry.config(bg='lightgrey' if not is_dark else 'white', fg=text_color)
@@ -296,24 +296,24 @@ class ManualCodingApp:
 
     def update_font_size(self):
         font_spec = ("Helvetica", self.font_size.get())
-        widgets = [self.mip_label, self.kodierung_label, self.row_label, self.correct_label,
+        widgets = [self.mip_label, self.kodierung_label, self.row_label,
                    self.category_info_label, self.kommentar_label, self.percentage_label,
-                   self.entry, self.kommentar_entry, self.descriptive_sentence_text]
+                   self.entry, self.kommentar_entry, self.descriptive_sentence_text] # self.correct_label
         for widget in widgets:
             widget.config(font=font_spec)
 
-    def toggle_correct_status(self, is_correct):
-        self.df.at[self.index.get(), 'Manually Checked'] = is_correct
-        self.update_correct_status()
-
-    def update_correct_status(self):
-        is_correct = self.df.at[self.index.get(), 'Manually Checked']
-        if is_correct is True:
-            self.correct_label.config(text="Correct: ✔", fg='green')
-        elif is_correct is False:
-            self.correct_label.config(text="Correct: ✘", fg='red')
-        else:
-            self.correct_label.config(text="Correct: ?", fg='yellow')
+#    def toggle_correct_status(self, is_correct):
+#        self.df.at[self.index.get(), 'Manually Checked'] = is_correct
+#        self.update_correct_status()
+#
+#    def update_correct_status(self):
+#        is_correct = self.df.at[self.index.get(), 'Manually Checked']
+#        if is_correct is True:
+#            self.correct_label.config(text="Correct: ✔", fg='green')
+#        elif is_correct is False:
+#            self.correct_label.config(text="Correct: ✘", fg='red')
+#        else:
+#            self.correct_label.config(text="Correct: ?", fg='yellow')
 
     def save_changes(self):
         if self.file_path.endswith('.xlsx'):
