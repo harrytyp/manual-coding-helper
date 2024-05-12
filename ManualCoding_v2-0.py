@@ -134,7 +134,7 @@ class ManualCodingApp:
         tree.heading('#0', text='ID')
         tree.heading('#1', text='Label')
         tree.heading('#2', text='Description')
-        tree.pack()
+        tree.pack(fill='both', expand=True)  # Use fill and expand to take up full space
 
         for id, label in categories.items():
             tree.insert('', 'end', text=id, values=(label['label'], label['description']))
@@ -225,7 +225,9 @@ class ManualCodingApp:
         self.update_category_info()
 
     def update_category_info(self):
-        kodierung = self.df.at[self.index.get(), 'Kodierung']
+        kodierung = str(self.df.at[self.index.get(), 'Kodierung'])
+        kodierung = kodierung.replace(".0", "")
+        self.kodierung_label.config(text=f"Label: {kodierung}")
         category_info = categories.get(str(kodierung), {}).get("label", "No information available")
         self.category_info_label.config(text=f"Category Information: {category_info}")
         descriptive_sentence = categories.get(str(kodierung), {}).get("description", "No descriptive sentence available")
