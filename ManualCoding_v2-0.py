@@ -327,7 +327,7 @@ class ManualCodingApp:
 
 
     def go_to_empty_row(self):
-        empty_indices = self.df[self.df['Kodierung'] == 0].index
+        empty_indices = self.df[(self.df['Kodierung'] == 0) | (self.df['Kodierung'].isna()) | (self.df['Kodierung'] == 'NA')].index
         if not empty_indices.empty:
             self.index.set(empty_indices[0])
             self.display_row()
