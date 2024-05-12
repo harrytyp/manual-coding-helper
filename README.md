@@ -1,22 +1,21 @@
 # Manual Coding Helper GUI for Text Classification
 This project is a simple Python GUI tool designed to assist with manual classification of segmented text data stored in Excel or CSV files. The motivation behind this project was to provide a user-friendly alternative for creating training data for machine learning tasks, avoiding the complexities of Doccano (https://github.com/doccano/doccano) or tedious manual spreadsheet work.
 
-![image](https://github.com/harrytyp/manual-coding-helper/assets/125975248/4268d18d-a73e-49d2-b99b-0409d7b97024)
+![image](https://github.com/harrytyp/manual-coding-helper/assets/125975248/b5522b82-cc19-42ea-ae20-15823effa74c)
 
 
 # Features
-- User-Friendly Interface: A straightforward GUI designed to streamline the process of annotating and classifying text data.
+- User-Friendly Interface: A straightforward GUI designed to streamline the process of annotating and classifying text data in csv and xlsx format.
 - Customizable: Easily adaptable to different datasets by configuring JSON files with specific codes and descriptions. Select your columns to display.
 - Navigation Controls: Navigate through rows of data, update annotations, and manage classification status with buttons and keyboard shortcuts.
 - Font Size Adjustment: Ability to customize the font size for better readability.
 - Dark Mode Support: Toggle between light and dark modes for optimal viewing experience.
 
-# Known Bugs
-- Correct toggle is bugged and does not save
-
-# Planned Features
+# Planned Features (in that order)
 - Improve label editor
 - Setting persistence between sessions
+- Re-Implement a Correct/Incorrect Toggle
+- Color Customization
 - Multi-Label classification support
 
 # Not Planned Features
@@ -46,11 +45,11 @@ Use the GUI to navigate through your data and annotate classifications. Your pro
 
 # Configuration
 
-### JSON Files
-Two JSON files (descriptive_sentences.json and category_mapping.json) are used for configuring codes, descriptions, and category mappings. Update these files according to your dataset's classification needs.
+### JSON File
+The JSON file (labels.json) is used for configuring codes, descriptions, and category mappings. Update these files according to your dataset's classification needs or use the rudimentary editor in the GUI under settings.
 
-### Display Customization
-Modify the display_row function in the code to specify the column you want to display within the GUI interface. (Replace 'sentence_text')
+### Display to be coded
+Change the column to be displayed/to be coded under Settings -> Select columns to display.
 
 # Contributing
 Contributions to enhance this tool are welcome! Feel free to open issues, submit pull requests, or suggest improvements.
